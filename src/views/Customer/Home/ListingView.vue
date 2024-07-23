@@ -32,6 +32,7 @@ onUpdated(async () => {
   if (productsStore.params.filter.product_category_id !== route.params.id) {
     productsStore.params.filter.product_category_id = route.params.id;
     try {
+      await crudOptionsStore.$reset();
       await productsStore.clearFields();
       await productsStore.getCustomerContent();
     } catch (error) {
