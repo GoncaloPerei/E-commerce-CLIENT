@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --p-paginator-current-page-report-color: #000000;
+}
+
+.p-dialog-title {
+  color: #0b6bda;
+  font-weight: 800;
+}
+
+.p-paginator.p-component {
+  padding: 0;
+  background-color: transparent;
+}
+
+.p-paginator-current {
+  font-weight: 900 !important;
+  color: #000000 !important;
+}
+
+.p-paginator-prev-icon .p-paginator-next-icon {
+  color: #000000 !important;
+}
+
+.p-checkbox-checked {
+  border: 0;
+}
+
+.p-checkbox-input {
+  border: 0;
+}
+
+.p-checkbox-icon {
+  background-color: #0b6bda;
+}
+
+.p-checkbox-checked .p-checkbox-box {
+  border-color: #0b6bda !important;
+  background: #0b6bda !important;
+}
+
+.p-radiobutton-box {
+  border-color: #0b6bda !important;
+  background-color: #0b6bda !important;
+}
+
+.p-textarea:focus {
+  border-color: #0b6bda !important;
+}
