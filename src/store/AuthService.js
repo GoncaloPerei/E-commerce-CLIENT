@@ -32,6 +32,9 @@ export const useAuthStore = defineStore("auth", {
       if (state.email !== null) {
         variables.email = state.email;
       }
+      if (state.password !== null) {
+        variables.password = state.password;
+      }
       if (state.balance !== null) {
         const card = state.user.cards.find((card) => card.id === state.id);
         variables.balance =
@@ -62,7 +65,9 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async getUser() {
       try {
-        const data = await axios.get("http://localhost:8000/api/profile");
+        const data = await axios.get(
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/profile`
+        );
 
         this.authUser = data.data;
         this.authStatus = true;
@@ -72,10 +77,10 @@ export const useAuthStore = defineStore("auth", {
     },
     async login() {
       try {
-        const response = await axios.post("http://localhost:8000/api/login", {
-          email: this.email,
-          password: this.password,
-        });
+        const response = await axios.post(
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/login`,
+          this.getVariables
+        );
 
         this.response = response.data;
         await this.clearFields();
@@ -87,12 +92,8 @@ export const useAuthStore = defineStore("auth", {
     async register() {
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/register",
-          {
-            fullName: this.fullName,
-            email: this.email,
-            password: this.password,
-          }
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/register`,
+          this.getVariables
         );
 
         this.response = response.data;
@@ -104,7 +105,9 @@ export const useAuthStore = defineStore("auth", {
     },
     async logout() {
       try {
-        const response = await axios.post("http://localhost:8000/api/logout");
+        const response = await axios.post(
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/logout`
+        );
 
         this.response = response.data;
         this.authUser = null;
@@ -116,7 +119,7 @@ export const useAuthStore = defineStore("auth", {
     async updateProfile() {
       try {
         const response = await axios.patch(
-          "http://localhost:8000/api/profile",
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/profile`,
           this.getVariables
         );
 
@@ -131,7 +134,7 @@ export const useAuthStore = defineStore("auth", {
     async addCard() {
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/user/card",
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/user/card`,
           this.getVariables
         );
         this.response = response.data;
@@ -145,7 +148,7 @@ export const useAuthStore = defineStore("auth", {
     async editCard() {
       try {
         const response = await axios.patch(
-          `http://localhost:8000/api/user/card/${this.id}`,
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/user/card/${this.id}`,
           this.getVariables
         );
         this.response = response.data;
@@ -159,7 +162,7 @@ export const useAuthStore = defineStore("auth", {
     async deleteCard() {
       try {
         const response = await axios.delete(
-          `http://localhost:8000/api/user/card/${this.id}`
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/user/card/${this.id}`
         );
         this.response = response.data;
         await this.clearFields();
@@ -181,14 +184,6 @@ export const useAuthStore = defineStore("auth", {
         this.errors = null;
       } catch (error) {
         throw error;
-      }
-    },
-    incrementBalance() {
-      this.balance += 10;
-    },
-    decreaseBalance() {
-      if (this.balance > 0) {
-        this.balance -= 10;
       }
     },
   },
