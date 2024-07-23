@@ -18,7 +18,9 @@ export const usePaymentsStore = defineStore("payments", {
     //Fetch Content Data
     async getContent() {
       try {
-        const data = await axios.get(`http://localhost:8003/api/payments`);
+        const data = await axios.get(
+          `${import.meta.env.VITE_ECMM_PAYMENTS_URL}/api/payments`
+        );
         this.data = data.data;
       } catch (error) {
         throw error;
@@ -26,7 +28,9 @@ export const usePaymentsStore = defineStore("payments", {
     },
     async postContent() {
       try {
-        const response = await axios.post(`http://localhost:8003/api/payments`);
+        const response = await axios.post(
+          `${import.meta.env.VITE_ECMM_PAYMENTS_URL}/api/payments`
+        );
         this.response = response.data;
       } catch (error) {
         throw error;

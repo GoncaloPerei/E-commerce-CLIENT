@@ -86,7 +86,7 @@ export const useProductsStore = defineStore("products", {
     //Fetch
     async getCategories() {
       try {
-        const data = await axios.get("http://localhost:8001/api/categories");
+        const data = await axios.get(`${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/categories`);
         if (!this.categories.length) {
           for (let category of data.data.data) {
             this.categories.push({ name: category?.name, id: category?.id });
@@ -99,7 +99,7 @@ export const useProductsStore = defineStore("products", {
     async getStatuses() {
       try {
         const data = await axios.get(
-          "http://localhost:8001/api/administrador/status"
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrador/status`
         );
         if (!this.statuses.length) {
           for (let status of data.data.data) {
@@ -115,7 +115,7 @@ export const useProductsStore = defineStore("products", {
     async getCustomerContent() {
       try {
         const data = await axios.get(
-          `http://localhost:8001/api/products?page=${crudOptionsStore.getCurrentPage}`,
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/products?page=${crudOptionsStore.getCurrentPage}`,
           {
             params: this.params,
           }
@@ -128,7 +128,7 @@ export const useProductsStore = defineStore("products", {
     async getContent() {
       try {
         const data = await axios.get(
-          `http://localhost:8001/api/administrator/products?page=${crudOptionsStore.getCurrentPage}`,
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/products?page=${crudOptionsStore.getCurrentPage}`,
           {
             params: this.params,
           }
@@ -141,7 +141,7 @@ export const useProductsStore = defineStore("products", {
     async getProduct() {
       try {
         const data = await axios.get(
-          `http://localhost:8001/api/products/${this.id}`
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/products/${this.id}`
         );
         this.product = data.data.data;
       } catch (error) {
@@ -153,7 +153,7 @@ export const useProductsStore = defineStore("products", {
     async postContent() {
       try {
         const response = await axios.post(
-          `http://localhost:8001/api/administrator/products`,
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/products`,
           this.getVariables
         );
 
@@ -168,7 +168,7 @@ export const useProductsStore = defineStore("products", {
     async putContent() {
       try {
         const response = await axios.patch(
-          `http://localhost:8001/api/administrator/products/${this.id}`,
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/products/${this.id}`,
           this.getVariables
         );
 
@@ -183,7 +183,7 @@ export const useProductsStore = defineStore("products", {
     async deleteContent() {
       try {
         const response = await axios.delete(
-          `http://localhost:8001/api/administrator/products/${this.id}`
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/products/${this.id}`
         );
 
         this.response = response.data;
@@ -197,7 +197,7 @@ export const useProductsStore = defineStore("products", {
     async restoreContent() {
       try {
         const response = await axios.post(
-          `http://localhost:8001/api/administrator/products/${this.id}/restore`
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/products/${this.id}/restore`
         );
 
         this.response = response.data;
