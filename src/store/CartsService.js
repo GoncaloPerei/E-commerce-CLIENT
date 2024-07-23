@@ -25,7 +25,9 @@ export const useCartsStore = defineStore("carts", {
   actions: {
     async getCart() {
       try {
-        const data = await axios.get("http://localhost:8002/api/cart");
+        const data = await axios.get(
+          `${import.meta.env.VITE_ECMM_CARTS_URL}/api/cart`
+        );
         this.cart = data.data.data;
       } catch (error) {
         throw error;
@@ -34,7 +36,7 @@ export const useCartsStore = defineStore("carts", {
     async updateCart() {
       try {
         const response = await axios.patch(
-          `http://localhost:8002/api/item/${this.id}`,
+          `${import.meta.env.VITE_ECMM_CARTS_URL}/api/item/${this.id}`,
           this.getVariables
         );
 
@@ -46,7 +48,7 @@ export const useCartsStore = defineStore("carts", {
     async addProduct() {
       try {
         const response = await axios.patch(
-          `http://localhost:8002/api/cart/${this.id}`,
+          `${import.meta.env.VITE_ECMM_CARTS_URL}/api/cart/${this.id}`,
           this.getVariables
         );
 
@@ -57,7 +59,9 @@ export const useCartsStore = defineStore("carts", {
     },
     async removeProduct() {
       try {
-        const response = await axios.delete(`http://localhost:8002/api/item/${this.id}`);
+        const response = await axios.delete(
+          `${import.meta.env.VITE_ECMM_CARTS_URL}/api/item/${this.id}`
+        );
 
         this.response = response.data;
       } catch (error) {
@@ -66,7 +70,9 @@ export const useCartsStore = defineStore("carts", {
     },
     async cleanCart() {
       try {
-        const response = await axios.delete(`http://localhost:8002/api/cart/${this.cart.id}`);
+        const response = await axios.delete(
+          `${import.meta.env.VITE_ECMM_CARTS_URL}/api/cart/${this.cart.id}`
+        );
 
         this.response = response.data;
       } catch (error) {

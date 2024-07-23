@@ -1,7 +1,5 @@
 import { defineStore } from "pinia";
 import axios from "@/resources/axios.config";
-import { useAuthStore } from "@/store/AuthService";
-const authStore = useAuthStore();
 import { useCrudOptionsStore } from "@/store/useCrudOptions";
 const crudOptionsStore = useCrudOptionsStore();
 
@@ -57,7 +55,7 @@ export const useCategoriesStore = defineStore("categories", {
     async getStatuses() {
       try {
         const data = await axios.get(
-          "http://localhost:8001/api/administrador/status"
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrador/status`
         );
         if (!this.statuses.length) {
           for (let status of data.data.data) {
@@ -71,7 +69,7 @@ export const useCategoriesStore = defineStore("categories", {
     async getContent() {
       try {
         const data = await axios.get(
-          `http://localhost:8001/api/administrator/categories?page=${crudOptionsStore.getCurrentPage}`,
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/categories?page=${crudOptionsStore.getCurrentPage}`,
           {
             params: this.params,
           }
@@ -83,9 +81,12 @@ export const useCategoriesStore = defineStore("categories", {
     },
     async getCustomerContent() {
       try {
-        const data = await axios.get(`http://localhost:8001/api/categories`, {
-          params: this.params,
-        });
+        const data = await axios.get(
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/categories`,
+          {
+            params: this.params,
+          }
+        );
         this.data = data.data;
       } catch (error) {
         throw error;
@@ -94,7 +95,7 @@ export const useCategoriesStore = defineStore("categories", {
     async getCategory() {
       try {
         const data = await axios.get(
-          `http://localhost:8001/api/categories/${this.id}`
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/categories/${this.id}`
         );
         this.category = data.data;
       } catch (error) {
@@ -106,7 +107,7 @@ export const useCategoriesStore = defineStore("categories", {
     async postContent() {
       try {
         const response = await axios.post(
-          `http://localhost:8001/api/administrator/categories`,
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/categories`,
           this.getVariables
         );
 
@@ -121,7 +122,7 @@ export const useCategoriesStore = defineStore("categories", {
     async putContent() {
       try {
         const response = await axios.patch(
-          `http://localhost:8001/api/administrator/categories/${this.id}`,
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/categories/${this.id}`,
           this.getVariables
         );
 
@@ -136,7 +137,7 @@ export const useCategoriesStore = defineStore("categories", {
     async deleteContent() {
       try {
         const response = await axios.delete(
-          `http://localhost:8001/api/administrator/categories/${this.id}`
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/categories/${this.id}`
         );
 
         this.response = response.data;
@@ -150,7 +151,7 @@ export const useCategoriesStore = defineStore("categories", {
     async restoreContent() {
       try {
         const response = await axios.post(
-          `http://localhost:8001/api/administrator/categories/${this.id}/restore`
+          `${import.meta.env.VITE_ECMM_PRODUCTS_URL}/api/administrator/categories/${this.id}/restore`
         );
 
         this.response = response.data;

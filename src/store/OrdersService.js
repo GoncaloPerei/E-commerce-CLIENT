@@ -76,7 +76,7 @@ export const useOrdersStore = defineStore("orders", {
     async getContent() {
       try {
         const data = await axios.get(
-          `http://localhost:8003/api/orders?page=${this.currentPage + 1}`,
+          `${import.meta.env.VITE_ECMM_ORDERS_URL}/api/orders?page=${this.currentPage + 1}`,
           {
             params: this.params,
           }
@@ -89,7 +89,7 @@ export const useOrdersStore = defineStore("orders", {
     async getOrder() {
       try {
         const data = await axios.get(
-          `http://localhost:8003/api/orders/${this.id}`
+          `${import.meta.env.VITE_ECMM_ORDERS_URL}/api/orders/${this.id}`
         );
         this.data = data.data;
       } catch (error) {
@@ -99,7 +99,7 @@ export const useOrdersStore = defineStore("orders", {
     async testDetails() {
       try {
         const response = await axios.post(
-          `http://localhost:8003/api/test`,
+          `${import.meta.env.VITE_ECMM_ORDERS_URL}/api/test`,
           this.getVariables
         );
 
@@ -112,7 +112,7 @@ export const useOrdersStore = defineStore("orders", {
     async postContent() {
       try {
         const response = await axios.post(
-          `http://localhost:8003/api/orders`,
+          `${import.meta.env.VITE_ECMM_ORDERS_URL}/api/orders`,
           this.getVariables
         );
         this.response = response.data;

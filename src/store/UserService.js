@@ -58,7 +58,7 @@ export const useUsersStore = defineStore("users", {
     async getRoles() {
       try {
         const data = await axios.get(
-          "http://localhost:8000/api/administrator/roles"
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/administrator/roles`
         );
         if (!this.roles.length) {
           for (let role of data.data) {
@@ -74,7 +74,7 @@ export const useUsersStore = defineStore("users", {
     async getContent() {
       try {
         const data = await axios.get(
-          `http://localhost:8000/api/administrator/users?page=${crudOptionsStore.getCurrentPage}`,
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/administrator/users?page=${crudOptionsStore.getCurrentPage}`,
           {
             params: this.params,
           }
@@ -89,7 +89,7 @@ export const useUsersStore = defineStore("users", {
     async postContent() {
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/administrator/users",
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/administrator/users`,
           this.getVariables
         );
 
@@ -104,7 +104,7 @@ export const useUsersStore = defineStore("users", {
     async putContent() {
       try {
         const response = await axios.patch(
-          `http://localhost:8000/api/administrator/users/${this.id}`,
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/administrator/users/${this.id}`,
           this.getVariables
         );
 
@@ -119,7 +119,7 @@ export const useUsersStore = defineStore("users", {
     async deleteContent() {
       try {
         const response = await axios.delete(
-          `http://localhost:8000/api/administrator/users/${this.id}`
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/administrator/users/${this.id}`
         );
         this.response = response.data;
         await this.clearFields();
@@ -132,7 +132,7 @@ export const useUsersStore = defineStore("users", {
     async restoreContent() {
       try {
         const response = await axios.post(
-          `http://localhost:8000/api/administrator/users/${this.id}/restore`
+          `${import.meta.env.VITE_ECMM_USERS_URL}/api/administrator/users/${this.id}/restore`
         );
         this.response = response.data;
         await this.clearFields();
