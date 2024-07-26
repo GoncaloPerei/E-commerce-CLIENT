@@ -3,6 +3,7 @@ import { RouterLink } from "vue-router";
 import StockCard from "@/components/StockCard.vue";
 
 defineProps({
+  id: { type: String, required: true },
   title: { type: String, required: true },
   price: { type: String, required: true },
   image: { type: String, required: true },
@@ -13,6 +14,7 @@ defineProps({
 
 <template>
   <RouterLink
+    :id="id"
     :to="link"
     class="w-full h-full bg-[#BEBEBE]/20 p-6 flex flex-col justify-between gap-2.5 items-center max-w-[350px] max-h-[350px] rounded-lg"
   >
@@ -30,6 +32,6 @@ defineProps({
       decoding="async"
       loading="lazy"
     />
-    <StockCard :stock="stock"/>
+    <StockCard :stock="stock" />
   </RouterLink>
 </template>

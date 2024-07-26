@@ -59,6 +59,7 @@ onUnmounted(async () => {
         <ProductCard
           v-for="product in productsStore?.data?.data"
           class="hover:scale-105 transition-all duration-300"
+          :id="product?.id"
           :title="product?.title"
           :price="product?.price"
           :image="product?.image"
