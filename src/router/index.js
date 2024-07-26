@@ -182,7 +182,7 @@ router.beforeEach(async (to, from, next) => {
   const cartsStore = useCartsStore();
   const ordersStore = useOrdersStore();
 
-  if (to.path !== "/auth/login" && to.path !== "/auth/register") {
+  if (to.meta.requiresAuth === true) {
     try {
       await authStore.getUser();
     } catch (error) {}
