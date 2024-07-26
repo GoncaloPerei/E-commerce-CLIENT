@@ -3,7 +3,7 @@ import { RouterLink } from "vue-router";
 import StockCard from "@/components/StockCard.vue";
 
 defineProps({
-  id: { type: String, required: true },
+  id: { type: Number, required: true },
   title: { type: String, required: true },
   price: { type: String, required: true },
   image: { type: String, required: true },
