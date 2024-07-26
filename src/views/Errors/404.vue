@@ -4,30 +4,30 @@ import { RouterLink } from "vue-router";
 
 <template>
   <div
-    class="relative flex items-center justify-center min-h-screen bg-[#1E1E1E] bg-cover bg-bottom error-bg font-montserrat"
+    class="relative flex items-center justify-center min-h-screen bg-cover bg-bottom error-bg font-montserrat"
   >
     <div class="container">
       <div class="row">
         <div class="col-sm-8 offset-sm-2 text-gray-50 text-center -mt-52">
           <div class="relative">
             <h1
-              class="relative text-9xl tracking-tighter-less text-[#F36F3F] text-shadow font-sans font-bold"
+              class="relative text-9xl tracking-tighter-less text-[rgb(11,107,218)] text-shadow font-sans font-bold"
             >
               <span>4</span><span>0</span><span>4</span>
             </h1>
-            <span class="absolute top-0 -ml-12 text-gray-300 font-semibold"
+            <span class="absolute top-0 -ml-12 text-gray-500 font-semibold"
               >Oops!</span
             >
           </div>
-          <h5 class="text-gray-300 font-semibold -mr-10 -mt-3">
+          <h5 class="text-gray-500 font-semibold -mr-10 -mt-3">
             Page not found
           </h5>
-          <p class="text-gray-100 mt-2 mb-6">
+          <p class="text-black mt-2 mb-6">
             We are sorry, but the page you requested was not found
           </p>
           <router-link
             to="/"
-            class="bg-[#F36F3F] px-5 py-3 text-base shadow-sm font-bold tracking-wider text-[#242424] rounded-full cursor-pointer hover:shadow-lg"
+            class="bg-[#0B6BDA] px-5 py-3 text-base shadow-sm font-bold tracking-wider text-white rounded-full cursor-pointer hover:shadow-lg"
           >
             Got to Home
           </router-link>
@@ -45,6 +45,6 @@ import { RouterLink } from "vue-router";
   letter-spacing: -0.75rem;
 }
 .text-shadow {
-  text-shadow: -8px 0 0 rgb(243, 111, 63, 0.4);
+  text-shadow: -8px 0 0 rgb(11,107,218, 0.4);
 }
 </style>
